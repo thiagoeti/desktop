@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # pull
-docker pull "python:3.9.20-alpine"
+docker pull "python:latest"
 
 # drop
 docker rm -f "python"

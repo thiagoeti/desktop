@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # pull
-docker pull "php"
+docker pull "php:latest"
 
 # drop
 docker rm -f "php"

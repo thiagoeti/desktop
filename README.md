@@ -1,6 +1,6 @@
 # Desktop
 
-Containers for development desktop.
+Apps and Containers for development desktop.
 
 ![Image](_img/post.jpg)
 
@@ -82,4 +82,23 @@ docker run --name "python" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "python":"latest" "/bin/bash"
+```
+
+## PHP HyperF
+
+```console
+# pull
+docker pull "hyperf/hyperf:8.3-alpine-v3.19-swoole"
+
+# drop
+docker rm -f "hyperf"
+
+# run
+docker run --name "hyperf" \
+	-v "/data":"/data" \
+	-w "/data" \
+	-p 9501:9501 \
+	--privileged -u root \
+	--entrypoint /bin/sh \
+	-it "hyperf/hyperf:8.3-alpine-v3.19-swoole"
 ```

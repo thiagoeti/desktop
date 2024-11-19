@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # pull
-docker pull "node"
+docker pull "node:latest"
 
 # drop
 docker rm -f "node"
