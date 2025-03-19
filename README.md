@@ -14,7 +14,7 @@ docker pull "alpine"
 docker rm -f "alpine"
 
 # run
-docker run --name "alpine" \
+docker run --rm --name "alpine" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "alpine":"latest" "/bin/sh"
@@ -30,7 +30,7 @@ docker pull "debian"
 docker rm -f "debian"
 
 # run
-docker run --name "debian" \
+docker run --rm --name "debian" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "debian":"latest" "/bin/bash"
@@ -46,7 +46,7 @@ docker pull "php"
 docker rm -f "php"
 
 # run
-docker run --name "php" \
+docker run --rm --name "php" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "php":"latest" "/bin/bash"
@@ -62,7 +62,7 @@ docker pull "node"
 docker rm -f "node"
 
 # run
-docker run --name "node" \
+docker run --rm --name "node" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "node":"latest" "/bin/bash"
@@ -78,7 +78,7 @@ docker pull "python:3.9.20-alpine"
 docker rm -f "python"
 
 # run
-docker run --name "python" \
+docker run --rm --name "python" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "python":"latest" "/bin/bash"
@@ -94,7 +94,7 @@ docker pull "hyperf/hyperf:8.3-alpine-v3.19-swoole"
 docker rm -f "hyperf"
 
 # run
-docker run --name "hyperf" \
+docker run --rm --name "hyperf" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-p 9501:9501 \

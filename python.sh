@@ -7,7 +7,7 @@ docker pull "python:latest"
 docker rm -f "python"
 
 # run
-docker run --name "python" \
+docker run --rm --name "python" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "python":"latest" "/bin/bash"

@@ -1,13 +1,13 @@
 #!/bin/sh
 
 # pull
-docker pull "alpine"
+docker pull "alpine:latest"
 
 # drop
 docker rm -f "alpine"
 
 # run
-docker run --name "alpine" \
+docker run --rm --name "alpine" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "alpine":"latest" "/bin/sh"

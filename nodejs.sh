@@ -7,7 +7,7 @@ docker pull "node:latest"
 docker rm -f "node"
 
 # run
-docker run --name "node" \
+docker run --rm --name "node" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "node":"latest" "/bin/bash"

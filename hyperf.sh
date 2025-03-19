@@ -7,7 +7,7 @@ docker pull "hyperf/hyperf:8.3-alpine-v3.19-swoole"
 docker rm -f "hyperf"
 
 # run
-docker run --name "hyperf" \
+docker run --rm --name "hyperf" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-p 9501:9501 \

@@ -7,7 +7,7 @@ docker pull "php:latest"
 docker rm -f "php"
 
 # run
-docker run --name "php" \
+docker run --rm --name "php" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-it "php":"latest" "/bin/bash"
