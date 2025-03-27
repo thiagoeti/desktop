@@ -3,9 +3,6 @@
 # pull
 docker pull "debian:latest"
 
-# drop
-docker rm -f "debian"
-
 # run
 docker run --rm --name "debian" \
 	-v "/data":"/data" \

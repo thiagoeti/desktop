@@ -3,9 +3,6 @@
 # pull
 docker pull "composer:latest"
 
-# drop
-docker rm -f "composer"
-
 # run
 docker run --rm --name "composer" \
 	-v "/data":"/data" \

@@ -3,9 +3,6 @@
 # pull
 docker pull "node:latest"
 
-# drop
-docker rm -f "node"
-
 # run
 docker run --rm --name "node" \
 	-v "/data":"/data" \

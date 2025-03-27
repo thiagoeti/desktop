@@ -3,9 +3,6 @@
 # pull
 docker pull "hyperf/hyperf:8.3-alpine-v3.19-swoole"
 
-# drop
-docker rm -f "hyperf"
-
 # run
 docker run --rm --name "hyperf" \
 	-v "/data":"/data" \

@@ -3,9 +3,6 @@
 # pull
 docker pull "alpine:latest"
 
-# drop
-docker rm -f "alpine"
-
 # run
 docker run --rm --name "alpine" \
 	-v "/data":"/data" \
