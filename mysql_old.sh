@@ -11,7 +11,7 @@ ln -s "/var/lib/docker/volumes/mysql_old" "/data/volume/"
 docker run --rm --name "mysql_old" \
 	-p 3306:3306 \
 	-v "mysql_old":"/var/lib/mysql" \
-	-e MYSQL_ROOT_PASSWORD="master" \
+	-e MYSQL_ROOT_PASSWORD="***" \
 	-d mysql:5.7.44
 
 # start

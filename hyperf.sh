@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # pull
-docker pull "hyperf/hyperf:8.3-alpine-v3.19-swoole"
+docker pull "hyperf/hyperf:8.3-alpine-v3.22-swoole"
 
 # run
 docker run --rm --name "hyperf" \
@@ -10,6 +10,6 @@ docker run --rm --name "hyperf" \
 	-p 9501:9501 \
 	--privileged -u root \
 	--entrypoint /bin/sh \
-	-it "hyperf/hyperf:8.3-alpine-v3.19-swoole"
+	-it "hyperf/hyperf:8.3-alpine-v3.22-swoole"
 
 #
