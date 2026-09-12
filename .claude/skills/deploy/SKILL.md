@@ -1,23 +1,25 @@
 ---
 name: deploy
 description: >
-  Deploy e versionamento via Git, usando o script git.sh na raiz do projeto.
-  Use sempre que o usuário mencionar deploy, publicar, commitar, push, versionamento, atualizar repositório, subir para beta, main, colocar em produção, sincronizar branches, ou rodar o git.sh. Dispare mesmo sem a palavra "deploy" — qualquer menção a git, push, commit ou publicação de código aciona esta skill.
-tools:
-  - Bash
-  - Read
+  Deploy e versionamento via Git, usando o script .git.sh na raiz do projeto.
+  Use sempre que o usuário mencionar deploy, publicar, commitar, push, versionamento, atualizar repositório, subir para beta, main, colocar em produção, sincronizar branches, ou rodar o .git.sh. Dispare mesmo sem a palavra "deploy" — qualquer menção a git, push, commit ou publicação de código aciona esta skill.
+allowed-tools: Read Bash
+license: Unlicense
+metadata:
+  author: thiagoeti
+  version: "1.0.0"
 ---
 
 # Deploy
 
-Toda publicação passa pelo script **`git.sh`** — ele é a **fonte única da verdade** do workflow git. Esta skill não reimplementa a lógica: ela escolhe o modo certo, mostra o que vai acontecer e executa `git.sh`.
+Toda publicação passa pelo script **`.git.sh`** — ele é a **fonte única da verdade** do workflow git. Esta skill não reimplementa a lógica: ela escolhe o modo certo, mostra o que vai acontecer e executa `.git.sh`.
 
-> O arquivo **real** é [`./git.sh`](./git.sh) (dentro desta skill, versionado). A **raiz** do projeto tem apenas um **symlink** `git.sh → .claude/skills/deploy/git.sh` para conveniência de execução — esse link é ignorado pelo git (regra `/git.sh` no `.gitignore`).
+> O arquivo **real** é [`.git.sh`](.git.sh) (dentro desta skill, versionado). A **raiz** do projeto tem apenas um **symlink** `.git.sh → .claude/skills/deploy/.git.sh` para conveniência de execução — esse link é ignorado pelo git (regra `/.git.sh` no `.gitignore`).
 >
-> Rodar `bash git.sh` da raiz executa o conteúdo do arquivo real. O script usa `DIR="$(cd "$(dirname "$0")" && pwd)"`: como o shell **não** resolve o alvo do symlink em `$0` (vale para `sh`/`dash`/`bash`), `$0` é o link `git.sh` **na raiz**, então `DIR` aponta para a **raiz do repo** — que é onde os comandos git devem rodar. Nunca há duas versões para sincronizar.
+> Rodar `bash .git.sh` da raiz executa o conteúdo do arquivo real. O script usa `DIR="$(cd "$(dirname "$0")" && pwd)"`: como o shell **não** resolve o alvo do symlink em `$0` (vale para `sh`/`dash`/`bash`), `$0` é o link `.git.sh` **na raiz**, então `DIR` aponta para a **raiz do repo** — que é onde os comandos git devem rodar. Nunca há duas versões para sincronizar.
 
 ```bash
-bash git.sh [beta|main|full] ["message commit"]
+bash .git.sh [beta|main|full] ["message commit"]
 ```
 
 Se o modo for omitido, o padrão é `beta`. Se a mensagem for omitida, usa
@@ -40,7 +42,7 @@ Se o modo for omitido, o padrão é `beta`. Se a mensagem for omitida, usa
 **0. Verifique o symlink antes de qualquer coisa:**
 
 ```bash
-ln -s .claude/skills/deploy/git.sh git.sh
+ln -s .claude/skills/deploy/.git.sh .git.sh
 ```
 
 Se o symlink não existir, crie-o. Se existir um arquivo real no lugar (não é symlink), pare e avise o usuário — não sobrescreva.
@@ -51,22 +53,22 @@ Se o symlink não existir, crie-o. Se existir um arquivo real no lugar (não é 
 git -C "$(git rev-parse --show-toplevel)" status -sb
 ```
 
-**2. Confirme o modo e a mensagem com o usuário**, então execute:
+**2. Escolha o modo pelo pedido e execute sem perguntar:**
 
 ```bash
 # beta (padrão) — com mensagem personalizada
-bash git.sh beta "feat: message commit"
+bash .git.sh beta "feat: message commit"
 
 # main — promove beta para produção
-bash git.sh main
+bash .git.sh main
 
 # full — pipeline completo
-bash git.sh full "chore: release"
+bash .git.sh full "chore: release"
 ```
 
 ---
 
-## Garantias do git.sh (não precisa duplicar aqui)
+## Garantias do .git.sh (não precisa duplicar aqui)
 
 O script já trata, e falha com mensagem clara, nestes casos:
 
@@ -83,7 +85,9 @@ O script já trata, e falha com mensagem clara, nestes casos:
 
 ## Regras de uso
 
-- **Não reimplemente git** em scripts paralelos — sempre chame `git.sh`. Qualquer ajuste de comportamento é feito **no próprio `git.sh`**.
+- **Não reimplemente git** em scripts paralelos — sempre chame `.git.sh`. Qualquer ajuste de comportamento é feito **no próprio `.git.sh`**.
 - **Mensagens de commit**, seguindo Conventional Commits (`feat:`, `fix:`, `chore:`, `docs:`…).
 - **`main`/`full` mexem em produção** — confirme com o usuário antes de executar.
 - Se o script parar pedindo resolução manual (conflito de stash/merge), **não force**: relate a mensagem do script ao usuário e siga as instruções que ele imprimiu.
+
+---
