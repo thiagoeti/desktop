@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# git.sh — Git Workflow
-# Usage: ./git.sh [beta|main|full] [<message>]
+# .git.sh — Git Workflow
+# Usage: ./.git.sh [beta|main|full] [<message>]
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 # Lowercase the mode so 'Beta', 'MAIN', etc. are accepted.
@@ -35,7 +35,7 @@ stash_if_dirty() {
     DIRTY=true
     echo ""
     echo "📦 Changes in '$(git branch --show-current)' — stashing..."
-    git stash push -u -m "git.sh: $1" || die "🚫 Failed to stash changes."
+    git stash push -u -m ".git.sh: $1" || die "🚫 Failed to stash changes."
   fi
 }
 
@@ -63,7 +63,7 @@ restore_stash() {
 echo ""
 echo "════════════════════════════════"
 echo ""
-echo "▶️ git.sh — starting"
+echo "▶️ .git.sh — starting"
 echo ""
 echo "📁 Repo: $DIR"
 echo "🌿 Mode: $MODE"
@@ -366,7 +366,7 @@ fi
 # --- Done ---
 
 echo ""
-echo "✅ git.sh — Done"
+echo "✅ .git.sh — Done"
 echo ""
 echo "📌 Worked on: $MODE"
 echo "📍 Current branch: $(git branch --show-current)"
