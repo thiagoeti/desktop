@@ -2,12 +2,11 @@
 name: define
 description: >
   Analisa, corrige e configura a separação entre os arquivos raiz README.md (público) e CLAUDE.md (sdd agent) de um projeto. Gatilhos: "define o projeto", "analisa o README", "atualiza o CLAUDE.md", "configura os arquivos do projeto", "o README está certo?", "o CLAUDE.md está completo?", ou qualquer pedido para revisar, criar ou ajustar README.md/CLAUDE.md.
-tools:
-  - Read
-  - Edit
-  - Write
-  - Glob
-  - Bash
+allowed-tools: Read Edit Write Glob Bash
+license: Unlicense
+metadata:
+  author: thiagoeti
+  version: "1.0.0"
 ---
 
 # Define
@@ -54,6 +53,11 @@ As tabelas têm o objetivo de fornecer um guia claro e rápido para orientar as 
 
 1. **Tabela de Especificações (`.specs/`)**: Listar todos os arquivos de especificação acompanhados de um breve resumo, ordenados por relevância.
 2. **Tabela de Arquivos Internos (`.claude/`)**: Listar todos os arquivos de configuração do agente com uma breve descrição, ordenados por prioridade.
+
+**Execução:**
+
+1. Sem `CLAUDE.md` na raiz: rode `/init` para gerar a base. Com `CLAUDE.md`: pule (o `/init` sobrescreve).
+2. Aplique as regras acima sobre o resultado.
 
 ---
 
