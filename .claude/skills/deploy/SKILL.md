@@ -1,8 +1,6 @@
 ---
 name: deploy
-description: >
-  Deploy e versionamento via Git, usando o script .git.sh na raiz do projeto.
-  Use sempre que o usuário mencionar deploy, publicar, commitar, push, versionamento, atualizar repositório, subir para beta, main, colocar em produção, sincronizar branches, ou rodar o .git.sh. Dispare mesmo sem a palavra "deploy" — qualquer menção a git, push, commit ou publicação de código aciona esta skill.
+description: Deploy e versionamento via Git, usando o script .git.sh na raiz do projeto. Use sempre que o usuário mencionar deploy, publicar, commitar, push, versionamento, atualizar repositório, subir para beta, main, colocar em produção, sincronizar branches, ou rodar o .git.sh. Dispare mesmo sem a palavra "deploy" — qualquer menção a git, push, commit ou publicação de código aciona esta skill.
 allowed-tools: Read Bash
 license: Unlicense
 metadata:

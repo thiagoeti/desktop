@@ -1,7 +1,6 @@
 ---
 name: define
-description: >
-  Analisa, corrige e configura a separação entre os arquivos raiz README.md (público) e CLAUDE.md (sdd agent) de um projeto. Gatilhos: "define o projeto", "analisa o README", "atualiza o CLAUDE.md", "configura os arquivos do projeto", "o README está certo?", "o CLAUDE.md está completo?", ou qualquer pedido para revisar, criar ou ajustar README.md/CLAUDE.md.
+description: Analisa, corrige e configura a separação entre os arquivos raiz README.md (público) e CLAUDE.md (sdd agent) de um projeto. Gatilhos: "define o projeto", "analisa o README", "atualiza o CLAUDE.md", "configura os arquivos do projeto", "o README está certo?", "o CLAUDE.md está completo?", ou qualquer pedido para revisar, criar ou ajustar README.md/CLAUDE.md.
 allowed-tools: Read Edit Write Glob Bash
 license: Unlicense
 metadata:
