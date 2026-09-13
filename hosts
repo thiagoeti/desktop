@@ -2,5 +2,6 @@
 127.0.0.1		kibana
 127.0.0.1		mariadb
 127.0.0.1		mysql
+127.0.0.1		postgresql
 127.0.0.1		redis
 127.0.0.1		rabbitmq
