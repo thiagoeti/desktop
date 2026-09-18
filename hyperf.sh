@@ -8,6 +8,8 @@ docker run --rm --name "hyperf" \
 	-v "/data":"/data" \
 	-w "/data" \
 	-p 9501:9501 \
+	-e "APP_ENV=development" \
+	-e "TZ=America/Sao_Paulo" \
 	--privileged -u root \
 	--entrypoint /bin/sh \
 	-it "hyperf/hyperf:8.3-alpine-v3.22-swoole"

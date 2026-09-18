@@ -20,6 +20,10 @@ Apps and Containers for development desktop.
 
 [hyperf.sh](https://github.com/thiagoeti/desktop/blob/main/hyperf.sh)
 
+## PHP Swoole
+
+[hyperf.sh](https://github.com/thiagoeti/desktop/blob/main/swoole.sh)
+
 ## PHP Composer
 
 [composer.sh](https://github.com/thiagoeti/desktop/blob/main/composer.sh)
