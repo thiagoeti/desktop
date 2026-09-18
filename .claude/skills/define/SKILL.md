@@ -1,11 +1,11 @@
 ---
 name: define
-description: Analisa, corrige e configura a separação entre os arquivos raiz README.md (público) e CLAUDE.md (sdd agent) de um projeto. Gatilhos: "define o projeto", "analisa o README", "atualiza o CLAUDE.md", "configura os arquivos do projeto", "o README está certo?", "o CLAUDE.md está completo?", ou qualquer pedido para revisar, criar ou ajustar README.md CLAUDE.md.
+description: Analisa, corrige e configura a separação entre os arquivos raiz README.md (público) e CLAUDE.md (sdd agent). Gatilhos: "define o projeto", "analisa o README", "atualiza o CLAUDE.md", "configura os arquivos do projeto", "o README está certo?", "o CLAUDE.md está completo?", ou qualquer pedido para revisar, criar ou ajustar README.md CLAUDE.md.
 allowed-tools: Read Edit Write Glob Bash
 license: Unlicense
 metadata:
   author: thiagoeti
-  version: "1.0.0"
+  version: 1.1.0
 ---
 
 # Define
@@ -28,7 +28,7 @@ Regra de separação entre `README.md` e `CLAUDE.md` projeto.
 **Nunca deve conter:**
 - Detalhes de arquitetura ou desenvolvimento.
 - Referências ao diretório `.claude` ou a qualquer Documentação de Design de Software (SDD).
-- Scripts e ferramentas de workflow interno (ex.: `.git.sh`).
+- Scripts e ferramentas de workflow interno (ex.: `git.sh`).
 - Backlog, histórico de tarefas ou decisões internas de desenvolvimento.
 
 ---
@@ -57,6 +57,24 @@ As tabelas têm o objetivo de fornecer um guia claro e rápido para orientar as 
 
 1. Sem `CLAUDE.md` na raiz: rode `/init` para gerar a base. Com `CLAUDE.md`: pule (o `/init` sobrescreve).
 2. Aplique as regras acima sobre o resultado.
+
+---
+
+## `.specs/` — Especificações do projeto
+
+Uma spec por **assunto**, nunca um arquivo único que junta tudo.
+
+| Regra | Valor |
+|---|---|
+| Granularidade | 1 arquivo = 1 assunto. |
+| Duplicação | zero entre specs. Quando um assunto encosta em dois arquivos, o que não é dono aponta para o dono |
+| Nome | kebab-case, substantivo do assunto (`skill-contract.md`, `git-workflow.md`) |
+| Conteúdo | fato medido por comando, com data. Opinião e histórico narrativo ficam fora |
+| Índice | toda spec entra na Tabela de Especificações do `CLAUDE.md` na **mesma** mudança que cria o arquivo |
+| Detalhe × índice | detalhe mora nas .specs; o `CLAUDE.md` aponta para .specs, skills, etc |
+
+**Leitura:** o agente lê a Tabela de Especificações primeiro e abre só a spec do assunto em questão.
+A coluna de resumo existe para isso — precisa dizer o que o arquivo **responde**, não como ele se chama.
 
 ---
 

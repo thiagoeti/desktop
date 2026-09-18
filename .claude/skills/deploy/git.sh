@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# .git.sh — Git Workflow
-# Usage: ./.git.sh [beta|main|full] [<message>]
+# git.sh — Git Workflow
+# Usage: ./git.sh [beta|main|full] [<message>]
 
 DIR="$(cd "$(dirname "$0")" && pwd)"
 # Lowercase the mode so 'Beta', 'MAIN', etc. are accepted.
@@ -35,7 +35,7 @@ stash_if_dirty() {
     DIRTY=true
     echo ""
     echo "📦 Changes in '$(git branch --show-current)' — stashing..."
-    git stash push -u -m ".git.sh: $1" || die "🚫 Failed to stash changes."
+    git stash push -u -m "git.sh: $1" || die "🚫 Failed to stash changes."
   fi
 }
 
@@ -63,7 +63,7 @@ restore_stash() {
 echo ""
 echo "════════════════════════════════"
 echo ""
-echo "▶️ .git.sh — starting"
+echo "▶️ git.sh — starting"
 echo ""
 echo "📁 Repo: $DIR"
 echo "🌿 Mode: $MODE"
@@ -256,28 +256,35 @@ if [ "$MODE" != "main" ]; then
   git push origin "$BRANCH" || die "🚫 Push to $BRANCH failed — local commits are safe on '$BRANCH'."
 fi
 
-# --- Main: sync, merge beta (--no-ff), push directly ---
+# --- Main: sync main only ---
 
 if [ "$MODE" = "main" ]; then
   echo ""
-  echo "⬆️ Promoting beta → main..."
+  echo "🔄 Syncing main..."
+
+  if is_dirty; then
+    echo ""
+    echo "📝 Changed files:"
+    git status --short
+
+    echo ""
+    echo "📦 Staging all..."
+    git add -A
+
+    echo ""
+    echo "💾 Committing: $MSG"
+    git commit -m "$MSG" || die "🚫 Commit on main failed"
+  fi
 
   if ! git pull --rebase --no-edit >/dev/null 2>&1; then
     git rebase --abort >/dev/null 2>&1
-    git checkout beta >/dev/null 2>&1 || {
-      echo ""
-      echo "⚠️ Could not return to beta — you are on 'main'." >&2
-    }
-    die "🚫 Pull on main failed — aborted. Resolve divergence manually."
-  fi
-
-  if ! git merge --no-ff beta -m "merge: beta into main"; then
-    git merge --abort >/dev/null 2>&1
-    git checkout beta >/dev/null 2>&1 || {
-      echo ""
-      echo "⚠️ Could not return to beta — you are on 'main'." >&2
-    }
-    die "🚫 Merge beta into main failed — aborted. Resolve conflicts manually."
+    echo ""
+    echo "⚠️ Diverged from origin/main — merging remote into local, keeping local commits..."
+    git fetch origin main >/dev/null 2>&1 || die "🚫 Fetch failed while syncing main."
+    if ! git merge --no-ff origin/main -m "merge: origin/main into main"; then
+      git merge --abort >/dev/null 2>&1
+      die "🚫 Merge origin/main into main failed — resolve conflicts manually."
+    fi
   fi
 
   echo ""
@@ -366,7 +373,7 @@ fi
 # --- Done ---
 
 echo ""
-echo "✅ .git.sh — Done"
+echo "✅ git.sh — Done"
 echo ""
 echo "📌 Worked on: $MODE"
 echo "📍 Current branch: $(git branch --show-current)"
