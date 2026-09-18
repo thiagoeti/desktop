@@ -119,7 +119,18 @@ if [ "$MODE" = "full" ]; then
     echo ""
     echo "⚠️ Could not fetch from remote — working with local state."
   }
-  git checkout beta >/dev/null 2>&1 || die "🚫 Cannot switch to beta"
+  if git checkout beta >/dev/null 2>&1; then
+    :
+  elif git checkout -b beta --track origin/beta >/dev/null 2>&1; then
+    :
+  elif git checkout -b beta >/dev/null 2>&1; then
+    echo ""
+    echo "⚠️ 'beta' did not exist locally or on origin — created it from '$CURRENT'."
+  else
+    # Never leave the user's work stranded in the stash.
+    [ "$DIRTY" = true ] && git stash pop >/dev/null 2>&1
+    die "🚫 Cannot switch to beta"
+  fi
 
   # Commit the carried work now, so the loop's checkouts find a clean tree.
   restore_stash
@@ -352,7 +363,7 @@ fi
 
 # --- Return to branch ---
 
-if [ "$BRANCH" == "beta" ] || [ "$BRANCH" == "full" ]; then
+if [ "$BRANCH" = "beta" ] || [ "$BRANCH" = "full" ]; then
   echo ""
   echo "🔙 Returning to beta..."
   git checkout beta >/dev/null 2>&1 \
@@ -361,7 +372,7 @@ if [ "$BRANCH" == "beta" ] || [ "$BRANCH" == "full" ]; then
     || die "🚫 Cannot return to beta"
 fi
 
-if [ "$BRANCH" == "main" ]; then
+if [ "$BRANCH" = "main" ]; then
   echo ""
   echo "🔙 Returning to main..."
   git checkout main >/dev/null 2>&1 \

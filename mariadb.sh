@@ -14,10 +14,11 @@ docker rm -f "mariadb"
 docker run --name "mariadb" \
 	--cpus="4" \
 	--memory="8g" \
-	-p 3306:3306 \
 	-v "/data":"/data" \
 	-w "/data" \
-	-v "mariadb":"/var/lib/mariadb" \
+	-v "mariadb":"/var/lib/mysql" \
+	-p 3306:3306 \
+	-e "TZ=America/Sao_Paulo" \
 	-e MARIADB_ROOT_PASSWORD="***" \
 	-d "mariadb":"latest"
 
