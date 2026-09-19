@@ -5,7 +5,7 @@ allowed-tools: Read Bash
 license: Unlicense
 metadata:
   author: thiagoeti
-  version: "1.0.0"
+  version: 1.0.0
 ---
 
 # Deploy
@@ -20,8 +20,7 @@ Toda publicação passa pelo script **`git.sh`** — ele é a **fonte única da 
 bash git.sh [beta|main|full] ["message commit"]
 ```
 
-Se o modo for omitido, o padrão é `beta`. Se a mensagem for omitida, usa
-`chore: update <data>`.
+Se o modo for omitido, o padrão é `beta`. Se a mensagem for omitida, usa `chore: update <data>`.
 
 ---
 

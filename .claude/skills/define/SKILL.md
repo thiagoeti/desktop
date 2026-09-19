@@ -48,7 +48,7 @@ Regra de separação entre `README.md` e `CLAUDE.md` projeto.
 
 **Formatação Exigida:**
 
-As tabelas têm o objetivo de fornecer um guia claro e rápido para orientar as ações do agente. Elas devem ser apresentadas na seguinte ordem de importância:
+Tabelas são o guia rápido do agente. Nesta ordem:
 
 1. **Tabela de Especificações (`.specs/`)**: Listar todos os arquivos de especificação acompanhados de um breve resumo, ordenados por relevância.
 2. **Tabela de Arquivos Internos (`.claude/`)**: Listar todos os arquivos de configuração do agente com uma breve descrição, ordenados por prioridade.
@@ -73,8 +73,7 @@ Uma spec por **assunto**, nunca um arquivo único que junta tudo.
 | Índice | toda spec entra na Tabela de Especificações do `CLAUDE.md` na **mesma** mudança que cria o arquivo |
 | Detalhe × índice | detalhe mora nas .specs; o `CLAUDE.md` aponta para .specs, skills, etc |
 
-**Leitura:** o agente lê a Tabela de Especificações primeiro e abre só a spec do assunto em questão.
-A coluna de resumo existe para isso — precisa dizer o que o arquivo **responde**, não como ele se chama.
+**Leitura:** o agente lê a Tabela de Especificações primeiro e abre só a spec do assunto em questão. A coluna de resumo existe para isso — precisa dizer o que o arquivo **responde**, não como ele se chama.
 
 ---
 
